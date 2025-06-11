@@ -1,0 +1,95 @@
+Component	Purpose
+DataSource, DataLoader	Abstract and retrieve model-specific data
+FeaturePipeline, Normalize	Stateless, chainable transformations
+BaseModel	Interface for plug-and-play models
+Trainer	Custom training loop with batch and memory control
+BacktestEngine	Run and evaluate model predictions
+ReportManager	Collect and serialize all experiment outputs
+ModelComparer	Compare and rank models across metrics
+ExperimentRunner	Glue logic to tie it all together
+
+1. Core Components
+a. DataManager
+Handles data loading, caching, transformations.
+
+Ensures no redundant reads from disk or API.
+
+Provides standardized interface for models.
+
+b. FeaturePipeline
+Handles preprocessing and transformation of raw data.
+
+Can be customized per model or reused.
+
+Examples: rolling stats, z-score normalization, lagging.
+
+c. ModelWrapper
+Encapsulates any model (e.g., linear, tree-based, NN, custom).
+
+Supports fit/predict interfaces with X_train, y_train, etc.
+
+Knows how to serialize/deserialize models and store outputs.
+
+d. BacktestEngine
+Runs in-sample/out-of-sample tests.
+
+Handles time-slicing (e.g., rolling, walk-forward).
+
+Collects performance metrics, predictions, residuals.
+
+e. ReportGenerator
+Produces plots, tables, summary stats.
+
+Saves inputs/outputs, performance metrics, and diagnostics.
+
+Ready for notebook or dashboard use.
+
+f. ModelRegistry
+Tracks metadata: model version, training period, features used, metrics.
+
+Links to model pickle, report files, etc.
+
+g. ExperimentRunner
+Orchestrates data → features → model → backtest → report.
+
+Can run grid/random/hyperparam search or ensemble models.
+
+🧱 Suggested Directory Structure
+graphql
+Copy
+Edit
+alpha_framework/
+│
+├── data/
+│   ├── raw/                 # Raw input files (e.g., CSV, Parquet)
+│   ├── cache/               # Cached, cleaned datasets
+│   └── loaders/             # Functions to load daily prices, fundamentals, etc.
+│
+├── features/
+│   ├── transformers/        # Custom feature classes (e.g., MovingAverage)
+│   └── pipeline.py          # FeaturePipeline object
+│
+├── models/
+│   ├── base.py              # BaseModel with .fit(), .predict(), .save()
+│   ├── linear.py            # Example: LinearModel(BaseModel)
+│   ├── trees.py
+│   └── custom/
+│
+├── engine/
+│   ├── backtest.py          # Walk-forward testing
+│   ├── runner.py            # ExperimentRunner logic
+│   └── registry.py          # Track model metadata and results
+│
+├── reports/
+│   ├── plots.py
+│   ├── tables.py
+│   └── summary_generator.py
+│
+├── configs/
+│   ├── model_config.yaml
+│   └── experiment_config.yaml
+│
+├── notebooks/
+│   └── EDA, model comparison, diagnostics
+│
+└── main.py                  # CLI entry point (can use argparse or hydra)
