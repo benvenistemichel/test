@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\title{Factor Contribution to Portfolio Volatility with Correlated Factors}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Definitions}
+
+Let:
+\begin{itemize}
+  \item $\mathbf{w} \in \mathbb{R}^n$: vector of portfolio exposures (loadings) to each factor.
+  \item $\Sigma_F \in \mathbb{R}^{n \times n}$: factor covariance matrix (symmetric and positive semidefinite).
+  \item $\sigma_P$: total portfolio volatility.
+\end{itemize}
+
+Then the portfolio variance is given by:
+\[
+\sigma_P^2 = \mathbf{w}^T \Sigma_F \mathbf{w}
+\]
+and the portfolio volatility is:
+\[
+\sigma_P = \sqrt{\mathbf{w}^T \Sigma_F \mathbf{w}}
+\]
+
+\section*{Step-by-Step Procedure}
+
+\subsection*{1. Compute Portfolio Volatility}
+
+\[
+\sigma_P = \sqrt{\mathbf{w}^T \Sigma_F \mathbf{w}}
+\]
+
+\subsection*{2. Compute Marginal Contribution of Each Factor}\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\title{Factor Contribution to Portfolio Volatility with Correlated Factors}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Definitions}
+
+Let:
+\begin{itemize}
+  \item $\mathbf{w} \in \mathbb{R}^n$: vector of portfolio exposures (loadings) to each factor.
+  \item $\Sigma_F \in \mathbb{R}^{n \times n}$: factor covariance matrix (symmetric and positive semidefinite).
+  \item $\sigma_P$: total portfolio volatility.
+\end{itemize}
+
+Then the portfolio variance is given by:
+\[
+\sigma_P^2 = \mathbf{w}^T \Sigma_F \mathbf{w}
+\]
+and the portfolio volatility is:
+\[
+\sigma_P = \sqrt{\mathbf{w}^T \Sigma_F \mathbf{w}}
+\]
+
+\section*{Step-by-Step Procedure}
+
+\subsection*{1. Compute Portfolio Volatility}
+
+\[
+\sigma_P = \sqrt{\mathbf{w}^T \Sigma_F \mathbf{w}}
+\]
+
+\subsection*{2. Compute Marginal Contribution of Each Factor}
+
+The marginal contribution to risk from factor $i$, denoted $\text{MC}_i$, is:
+\[
+\text{MC}_i = \frac{\partial \sigma_P}{\partial w_i} = \frac{(\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+This represents how much the portfolio volatility would change with a small change in exposure to factor $i$.
+
+\subsection*{3. Compute Component Contribution}
+
+The component contribution to volatility from factor $i$, denoted $\text{CC}_i$, is:
+\[
+\text{CC}_i = w_i \cdot \text{MC}_i = \frac{w_i \cdot (\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+This is the actual contribution of factor $i$ to the total portfolio volatility.
+
+\subsection*{4. Compute Percentage Contribution (Optional)}
+
+To express each contribution as a percentage of total portfolio volatility:
+\[
+\text{Percent}_i = \frac{\text{CC}_i}{\sigma_P}
+\]
+
+\section*{Summary Formula}
+
+The total volatility is the sum of the component contributions:
+\[
+\sigma_P = \sum_{i=1}^n \text{CC}_i = \sum_{i=1}^n \frac{w_i \cdot (\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+\section*{Interpretation}
+
+\begin{itemize}
+  \item $\text{MC}_i$ measures the sensitivity of total volatility to a change in exposure to factor $i$.
+  \item $\text{CC}_i$ measures the actual amount of risk attributed to factor $i$.
+\end{itemize}
+
+\end{document}
+
+
+The marginal contribution to risk from factor $i$, denoted $\text{MC}_i$, is:
+\[
+\text{MC}_i = \frac{\partial \sigma_P}{\partial w_i} = \frac{(\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+This represents how much the portfolio volatility would change with a small change in exposure to factor $i$.
+
+\subsection*{3. Compute Component Contribution}
+
+The component contribution to volatility from factor $i$, denoted $\text{CC}_i$, is:
+\[
+\text{CC}_i = w_i \cdot \text{MC}_i = \frac{w_i \cdot (\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+This is the actual contribution of factor $i$ to the total portfolio volatility.
+
+\subsection*{4. Compute Percentage Contribution (Optional)}
+
+To express each contribution as a percentage of total portfolio volatility:
+\[
+\text{Percent}_i = \frac{\text{CC}_i}{\sigma_P}
+\]
+
+\section*{Summary Formula}
+
+The total volatility is the sum of the component contributions:
+\[
+\sigma_P = \sum_{i=1}^n \text{CC}_i = \sum_{i=1}^n \frac{w_i \cdot (\Sigma_F \mathbf{w})_i}{\sigma_P}
+\]
+
+\section*{Interpretation}
+\begin{itemize}
+\item The marginal contribution $\text{MC}_i$ represents the sensitivity of the total portfolio volatility $\sigma_P$ to a small change in the exposure to factor $i$. It answers the question: "If I slightly increase my exposure to factor $i$, how much will the total volatility increase?"
+
+\item The component contribution $\text{CC}_i$ quantifies the actual portion of the portfolio's volatility that is attributable to factor $i$, given the current exposure $w_i$. It decomposes the total volatility into contributions from each factor.
+
+\item The percentage contribution provides a normalized view of each factor’s contribution relative to the total portfolio volatility, making it easier to compare the impact of different factors.
+\end{itemize}
+
+\end{document}
